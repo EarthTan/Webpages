@@ -1,227 +1,212 @@
+/* ================== Root & Variables ================== */
 :root {
-    --accent: #ff3366;
-    --bg-main: #f7f7f7;
-    --text-main: #222;
-    --sidebar-bg: #111;
-    --white: #ffffff;
-    --sidebar-text: #fff;
-    --item-bg: #fff;
-    --item-border: #ff3366;
+    --bg-color: #f9f9f9;
+    --item-bg: #ffffff;
+    --item-border: #4a90e2;
     --item-shadow: rgba(0,0,0,0.1);
-    --link-color: #66b3ff;
-    --link-hover: #3399ff;
-    --text-secondary: #666;
-    --topbar-bg: #111;
-    --topbar-text: white;
-    --topbar-border: #ff3366;
-    --button-bg: #ff3366;
-    --button-hover: #ff5c85;
-    --button-text: white;
+    --accent: #4a90e2;
+    --text-primary: #222222;
+    --text-secondary: #555555;
+    --font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* ===== 为移动端的响应式设计 ===== */
-@media (max-width: 768px) {
-    .sidebar {
-        position: relative;
-        width: 100%;
-        height: auto;
-    }
-
-    .main {
-        margin-left: 0;
-        width: 100%;
-    }
-
-    .cv-item img {
-        float: none;
-        width: 100%;
-        margin: 0 0 15px 0;
-    }
-
-    /* imgbig 在移动端的响应式设计 */
-    .item.imgbig img {
-        width: 100%;
-        margin: 15px 0 0 0;
-    }
-}
-
-
-/* ===== 全局样式 ===== */
-body {
+/* ================== Global ================== */
+* {
+    box-sizing: border-box;
     margin: 0;
-    font-family: "Times New Roman", serif;
-    background-color: var(--white);
-    color: var(--text-main);
-    padding-top: 60px; /* 为了给固定的 topbar 留出空间 */
+    padding: 0;
 }
 
+body {
+    font-family: var(--font-sans);
+    background: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
 
-/* ===== 全局 Layout ===== */
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ================== Top Bar ================== */
+.topbar {
+    width: 100%;
+    background: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: flex-end;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.nav-btn {
+    padding: 6px 12px;
+    border: none;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.nav-btn:hover {
+    background: #357ab8;
+}
+
+/* ================== Layout ================== */
 .container {
     display: flex;
-    min-height: 100vh;
+    max-width: 1200px;
+    margin: 20px auto;
+    gap: 20px;
+    padding: 0 20px;
 }
 
-/* ===== Left Sidebar 样式===== */
 .sidebar {
-    width: 300px;
-    background-color: var(--sidebar-bg);
-    color: var(--sidebar-text);
-    padding: 30px;
-    position: fixed;
-    height: 100vh;
-    left: 0;
-    top: 0;
+    flex: 0 0 250px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px var(--item-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
 
 .sidebar img {
-    width: 120px;
-    height: auto; /* 高度随宽度自动调整 */
-    object-fit: cover; /* 可选，如果希望裁剪也能覆盖容器 */
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
     border: 3px solid var(--accent);
-    margin-bottom: 20px;
 }
-
 
 .sidebar h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    border-bottom: 2px solid var(--accent);
-    padding-bottom: 10px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 5px;
 }
-
 
 .sidebar .contact {
-    margin-top: 20px;
-    font-size: 14px;
-    line-height: 22px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-align: center;
+    line-height: 1.4;
 }
 
-/* ===== Main Content 样式===== */
-.main {     
-    margin-left: 300px;   
-    padding: 40px;
+/* ================== Main ================== */
+.main {
     flex: 1;
-    background: var(--bg-main);
-    position: relative;
-    z-index: 1;           /* 确保 main 区域在 sidebar 上方 */
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 
-
-h2.section-title {
-    font-size: 26px;
-    color: var(--accent);
-    border-bottom: 3px solid var(--accent);
+/* Section Title */
+.section-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--accent);
     padding-bottom: 5px;
-    margin-top: 50px;
-    margin-bottom: 20px;
-    border-left: 6px solid var(--accent);
-    padding-left: 10px;
+    color: var(--accent);
 }
 
-
-
-/* ===== item 样式 ===== */
+/* ================== Items ================== */
 .item {
     background: var(--item-bg);
     padding: 20px;
     margin-bottom: 20px;
     border-left: 5px solid var(--item-border);
-    box-shadow: 0 2px 6px var(--item-shadow);
-    overflow: hidden;
+    box-shadow: 0 2px 8px var(--item-shadow);
+    border-radius: 8px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 .item img {
     width: 120px;
-    max-height: 120px;  /* 限制最大高度 */
-    object-fit: cover;   /* 裁剪超出的部分，保持框大小 */
-    float: right;
-    margin-left: 20px;
+    height: 120px;
+    object-fit: cover;
     border-radius: 6px;
+    flex-shrink: 0;
 }
 
-/* ===== imgbig 样式 - 大图在底部 ===== */
+.item-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.item .item-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    flex: 0 0 auto;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e8e8e8;
+    color: var(--text-primary);
+}
+
+.item .item-desc {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    flex: 1 1 auto;
+    color: var(--text-secondary);
+}
+
 .item.imgbig {
-    position: relative; /* 如果需要定位内容 */
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .item.imgbig img {
-    display: block;       /* 块级显示，自然占满一行 */
-    width: 100%;          /* 宽度撑满父容器 */
-    max-height: 200px;    /* 限制高度，根据需要调整 */
-    object-fit: cover;    /* 保持比例，裁剪超出部分 */
-    margin-top: 20px;     /* 与上方内容保持间距 */
-    border-radius: 8px;
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    margin-top: 15px;
 }
 
 
 
 
-.item-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 8px;
-}
-
-.item-subtitle {
-    font-size: 14px;
-    color: var(--text-secondary);
-    margin-bottom: 12px;
-}
-
-.item-desc {
-    line-height: 1.6;
-    font-size: 15px;
-}
-
-
-/* 超链接样式 */
-a {
-    color: var(--link-color);   /* 淡蓝色 */
-    text-decoration: none;  /* 可选：去掉下划线 */
-}
-
-a:hover {
-    color: var(--link-hover);   /* 略亮的蓝色，用于 hover */
-    text-decoration: underline; /* 可选：hover 时显示下划线 */
-}
 
 
 
-/* Top Navigation Bar */
-.topbar {
-    position: fixed;
-    top: 0;
-    left: 300px; /* sidebar 宽度，如你 sidebar 是 300 就保持一致 */
-    right: 0;
-    height: 60px;
-
-    background: var(--topbar-bg);
-    color: var(--topbar-text);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 0 20px;
-    z-index: 999;
-
-    border-bottom: 2px solid var(--topbar-border); /* 强烈对比的风格 */
-}
-
-/* 按钮风格 */
-.nav-btn {
-    background: var(--button-bg);
-    border: none;
-    padding: 8px 16px;
-    margin-left: 10px;
-    color: var(--button-text);
-    font-size: 14px;
-    cursor: pointer;
-
-    border-radius: 6px;
-    transition: 0.3s;
-}
-
-.nav-btn:hover {
-    background: var(--button-hover);
+/* ================== Responsive ================== */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+    }
+    .sidebar {
+        flex: 1 1 auto;
+        flex-direction: row;
+        justify-content: center;
+        padding: 15px;
+        gap: 15px;
+    }
+    .sidebar img {
+        width: 100px;
+        height: 100px;
+    }
+    .item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
