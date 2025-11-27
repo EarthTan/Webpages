@@ -1,0 +1,62 @@
+/* ================== Selection Mode ================== */
+.item-checkbox {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin-left: 10px;
+}
+
+.select-mode .item-checkbox {
+    display: flex;
+}
+
+.select-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--accent);
+}
+
+.select-mode .item {
+    position: relative;
+    border-left: 5px solid #95a5a6;
+    transition: all 0.3s ease;
+}
+
+.select-mode .item.selected {
+    border-left: 5px solid var(--accent);
+    background: #f8f9fa;
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.2);
+}
+
+.select-mode .item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Selection mode buttons */
+.selection-controls {
+    display: none;
+    gap: 8px;
+}
+
+.select-mode .selection-controls {
+    display: flex;
+}
+
+.select-mode .topbar-right {
+    display: flex;
+    gap: 8px;
+}
+
+/* 减少 DOM 重排 - 使用 CSS 控制按钮显示隐藏 */
+#copy-btn,
+#select-btn {
+    display: inline-block;
+}
+
+.select-mode #copy-btn,
+.select-mode #select-btn {
+    display: none;
+}
